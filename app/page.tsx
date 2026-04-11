@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
-import { getSeoPages } from "@/lib/seo-data";
+import { SiteFooter } from "../components/site-footer";
+import { SiteHeader } from "../components/site-header";
+import { getSeoPages } from "../lib/seo-data";
 
 export default function HomePage() {
   const pages = getSeoPages();

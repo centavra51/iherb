@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SeoHero } from "@/components/seo-hero";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
-import { getRelatedPages, getSeoPageBySlug, getSeoPages } from "@/lib/seo-data";
-import { siteConfig } from "@/lib/site";
+import { SeoHero } from "../../components/seo-hero";
+import { SiteFooter } from "../../components/site-footer";
+import { SiteHeader } from "../../components/site-header";
+import { getRelatedPages, getSeoPageBySlug, getSeoPages } from "../../lib/seo-data";
+import { siteConfig } from "../../lib/site";
 
 type Params = { slug: string };
 

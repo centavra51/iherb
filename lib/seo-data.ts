@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { parseRichText, slugifyCyrillic, type RichBlock } from "@/lib/content";
-import { siteConfig } from "@/lib/site";
+import { parseRichText, slugifyCyrillic, type RichBlock } from "./content";
+import { siteConfig } from "./site";
 
 export type SeoPage = {
   slug: string;

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { getSeoPages } from "@/lib/seo-data";
-import { siteConfig } from "@/lib/site";
+import { getSeoPages } from "../lib/seo-data";
+import { siteConfig } from "../lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

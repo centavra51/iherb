@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { SeoPage } from "@/lib/seo-data";
+import type { SeoPage } from "../lib/seo-data";
 
 export function SeoHero({ page }: { page: SeoPage }) {
   return (
