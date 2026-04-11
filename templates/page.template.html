@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <link rel="canonical" href="{{CANONICAL_URL}}">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL_URL}}">
+  <meta property="og:site_name" content="iherbs.com.md">
+  <link rel="stylesheet" href="{{ASSET_PREFIX}}assets/programmatic.css">
+  <script type="application/ld+json">{{SCHEMA_JSON}}</script>
+</head>
+<body>
+  <header class="page-header">
+    <div class="wrap topbar">
+      <a class="brand" href="{{SITE_ROOT}}index.html">iherbs.com.md</a>
+      <nav class="topnav" aria-label="Главная навигация">
+        <a href="{{SITE_ROOT}}index.html">Главная</a>
+        <a href="{{SITE_ROOT}}index.html#supplements">Категории</a>
+        <a href="{{SITE_ROOT}}index.html#signup">Партнерская программа</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href="{{SITE_ROOT}}index.html">Главная</a>
+      <span>/</span>
+      <a href="{{SITE_ROOT}}index.html#supplements">{{CATEGORY}}</a>
+      <span>/</span>
+      <span>{{KEYWORD}}</span>
+    </nav>
+
+    <article class="page">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">{{CATEGORY}} · {{INTENT}}</p>
+          <h1>{{H1}}</h1>
+          <p class="lead">{{INTRO}}</p>
+
+          <div class="hero-metrics">
+            <div class="metric">
+              <strong>SEO</strong>
+              <span>Четкий long-tail интент и semantic coverage.</span>
+            </div>
+            <div class="metric">
+              <strong>UX</strong>
+              <span>Быстрый ответ, ясные блоки и сильный CTA.</span>
+            </div>
+            <div class="metric">
+              <strong>LLM</strong>
+              <span>Структура, сущности и FAQ для answer engines.</span>
+            </div>
+          </div>
+
+          <div class="cta-row">
+            <a class="button button-primary" href="{{SITE_ROOT}}index.html#signup">{{CTA_PRIMARY}}</a>
+            <a class="button button-secondary" href="{{SITE_ROOT}}index.html#supplements">{{CTA_SECONDARY}}</a>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          {{HERO_IMAGE}}
+          <div class="image-badge">Изображение по теме: {{KEYWORD}}</div>
+          <div class="hero-floating-card">
+            <p>Формат страницы</p>
+            <strong>HTML + JSON-LD</strong>
+            <span>Подходит для индексации, сниппетов и масштабной генерации.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip">
+        <article class="trust-card">
+          <strong>1 URL</strong>
+          <span>один основной интент без размытия темы</span>
+        </article>
+        <article class="trust-card">
+          <strong>FAQ</strong>
+          <span>закрывает микро-вопросы и усиливает полезность</span>
+        </article>
+        <article class="trust-card">
+          <strong>Schema</strong>
+          <span>помогает поисковику и нейросетям понять структуру</span>
+        </article>
+        <article class="trust-card">
+          <strong>Links</strong>
+          <span>внутренняя перелинковка на похожие страницы кластера</span>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <div class="main-column">
+          <section class="card">
+            <h2>Краткий ответ</h2>
+            <p>{{SHORT_ANSWER}}</p>
+          </section>
+
+          <section class="card">
+            <h2>Что важно учитывать при выборе</h2>
+            <div class="benefit-list">
+              {{BENEFIT_ITEMS}}
+            </div>
+            <p>{{HOW_TO_CHOOSE}}</p>
+          </section>
+
+          <section class="card split-card">
+            <div>
+              <h2>Почему такая страница работает лучше простого шаблона</h2>
+              <p>
+                Сильная programmatic SEO-страница не просто повторяет ключевой запрос. Она собирает вокруг него
+                полезный контекст: кому подходит тема, что учитывать при выборе, какие есть частые вопросы и какие
+                соседние страницы стоит открыть дальше.
+              </p>
+            </div>
+
+            <div class="mini-panel">
+              <h3>Идеальный каркас</h3>
+              <ul>
+                <li>Сильный title и H1</li>
+                <li>Изображение по теме</li>
+                <li>Прямой ответ в первом экране</li>
+                <li>Критерии выбора</li>
+                <li>FAQ и internal links</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2>Как эта страница помогает ранжироваться</h2>
+            <p>
+              Страница отвечает на конкретный long-tail интент, использует чистую HTML-структуру,
+              прямые ответы в первых блоках, тематические сущности и внутреннюю перелинковку на смежные материалы.
+            </p>
+            <ul>
+              <li>Один интент на страницу</li>
+              <li>Уникальный заголовок и мета-описание</li>
+              <li>Понятный FAQ и schema markup</li>
+              <li>Связь с тематическим кластером</li>
+            </ul>
+          </section>
+
+          <section class="card">
+            <h2>FAQ</h2>
+            <div class="faq-item">
+              <h3>{{FAQ_Q1}}</h3>
+              <p>{{FAQ_A1}}</p>
+            </div>
+            <div class="faq-item">
+              <h3>{{FAQ_Q2}}</h3>
+              <p>{{FAQ_A2}}</p>
+            </div>
+            <div class="faq-item">
+              <h3>{{FAQ_Q3}}</h3>
+              <p>{{FAQ_A3}}</p>
+            </div>
+          </section>
+        </div>
+
+        <aside class="sidebar">
+          <section class="card">
+            <h2>Параметры страницы</h2>
+            <ul class="meta-list">
+              <li><strong>Ключ:</strong> {{KEYWORD}}</li>
+              <li><strong>Категория:</strong> {{CATEGORY}}</li>
+              <li><strong>Интент:</strong> {{INTENT}}</li>
+              <li><strong>Каноникал:</strong> {{CANONICAL_URL}}</li>
+            </ul>
+          </section>
+
+          <section class="card">
+            <h2>Изображение страницы</h2>
+            <div class="sidebar-image">
+              {{SIDEBAR_IMAGE}}
+            </div>
+            <p class="sidebar-note">
+              Для лучших CTR и визуального качества используй реальную ссылку на изображение в колонке `image_url`.
+            </p>
+          </section>
+
+          <section class="card">
+            <h2>Похожие страницы</h2>
+            <div class="related-links">
+              {{RELATED_LINKS}}
+            </div>
+          </section>
+        </aside>
+      </section>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iherbs.com.md/sitemap.xml
