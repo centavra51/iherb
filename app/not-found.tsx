@@ -6,7 +6,7 @@ export default function NotFound() {
       <div className="not-found-card">
         <p className="eyebrow">404</p>
         <h1>Страница не найдена</h1>
-        <p>Похоже, такого URL еще нет в опубликованном SEO-кластере.</p>
+        <p>Похоже, такой подборки сейчас нет. Вернитесь на главную и откройте другие страницы по витаминам и БАДам.</p>
         <Link href="/" className="button button-primary">
           Вернуться на главную
         </Link>

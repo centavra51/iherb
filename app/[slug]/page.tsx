@@ -78,7 +78,7 @@ export default async function SeoPage({ params }: { params: Promise<Params> }) {
         <nav className="breadcrumbs" aria-label="Breadcrumbs">
           <Link href="/">Главная</Link>
           <span>/</span>
-          <Link href="/#seo-pages">{page.category}</Link>
+          <Link href="/#seo-pages">Подборки</Link>
           <span>/</span>
           <span>{page.keyword}</span>
         </nav>
@@ -88,30 +88,30 @@ export default async function SeoPage({ params }: { params: Promise<Params> }) {
 
           <section className="trust-strip">
             <article className="trust-card">
-              <strong>1 URL</strong>
-              <span>один основной интент без размытия темы</span>
+              <strong>Подборка</strong>
+              <span>Собрана под конкретный запрос, чтобы не смешивать разные сценарии выбора в одном месте.</span>
+            </article>
+            <article className="trust-card">
+              <strong>Сравнение</strong>
+              <span>Помогает быстро оценить форму выпуска, дозировку и дополнительные компоненты.</span>
             </article>
             <article className="trust-card">
               <strong>FAQ</strong>
-              <span>закрывает микро-вопросы и усиливает полезность</span>
+              <span>Закрывает частые вопросы перед покупкой и экономит время на поиске базовой информации.</span>
             </article>
             <article className="trust-card">
-              <strong>Schema</strong>
-              <span>помогает поисковику и нейросетям понять структуру</span>
-            </article>
-            <article className="trust-card">
-              <strong>Links</strong>
-              <span>внутренняя перелинковка на похожие страницы кластера</span>
+              <strong>Навигация</strong>
+              <span>Есть переходы на соседние подборки, чтобы человек мог сравнить близкие категории.</span>
             </article>
           </section>
 
           <section className="content-grid">
             <div className="main-column">
               <section className="card">
-                <h2>Краткий ответ</h2>
+                <h2>Кратко по теме</h2>
                 <p>
-                  Если вы продвигаете запрос «{page.keyword}», лучше всего работает отдельная страница под этот интент:
-                  с кратким ответом, блоком выбора, FAQ, связанными материалами и понятным CTA.
+                  {page.intro} Подборка по теме «{page.keyword}» помогает быстрее отсеять неподходящие варианты
+                  и сосредоточиться на тех формулах, которые подходят под задачу и привычный формат приема.
                 </p>
               </section>
 
@@ -129,27 +129,27 @@ export default async function SeoPage({ params }: { params: Promise<Params> }) {
 
               <section className="card split-card">
                 <div>
-                  <h2>Почему такая страница работает лучше простого шаблона</h2>
+                  <h2>Кому обычно подходит эта категория</h2>
                   <p>
-                    Сильная programmatic SEO-страница не просто повторяет ключевой запрос. Она собирает полезный
-                    контекст: кому подходит тема, какие критерии выбора важны и какие соседние страницы стоит открыть
-                    дальше.
+                    Такие подборки полезны тем, кто уже понимает задачу и хочет сравнить несколько популярных
+                    решений без перегруза медицинскими терминами. Это удобный формат для первого знакомства с
+                    категорией, быстрого сравнения и перехода к конкретному продукту.
                   </p>
                 </div>
                 <div className="mini-panel">
-                  <h3>Идеальный каркас</h3>
+                  <h3>Что удобно сравнить</h3>
                   <ul>
-                    <li>Сильный title и H1</li>
-                    <li>Изображение по теме</li>
-                    <li>Прямой ответ в первом экране</li>
-                    <li>Критерии выбора</li>
-                    <li>FAQ и internal links</li>
+                    <li>Форму выпуска и размер порции</li>
+                    <li>Дозировку активного компонента</li>
+                    <li>Наличие дополнительных ингредиентов</li>
+                    <li>Количество порций в упаковке</li>
+                    <li>Удобство ежедневного приема</li>
                   </ul>
                 </div>
               </section>
 
               <section className="card">
-                <h2>FAQ</h2>
+                <h2>Частые вопросы</h2>
                 {page.faq.map((item) => (
                   <div className="faq-item" key={item.question}>
                     <h3>{item.question}</h3>
@@ -160,7 +160,7 @@ export default async function SeoPage({ params }: { params: Promise<Params> }) {
 
               {page.richContent.length > 0 && (
                 <section className="card">
-                  <h2>Дополнительные блоки</h2>
+                  <h2>Полезно знать перед покупкой</h2>
                   <div className="rich-content">
                     {page.richContent.map((block, index) => {
                       if (block.type === "heading") {
@@ -186,25 +186,25 @@ export default async function SeoPage({ params }: { params: Promise<Params> }) {
 
             <aside className="sidebar">
               <section className="card">
-                <h2>Параметры страницы</h2>
+                <h2>Быстрые ориентиры</h2>
                 <ul className="meta-list">
                   <li>
-                    <strong>Ключ:</strong> {page.keyword}
+                    <strong>Тема:</strong> {page.keyword}
                   </li>
                   <li>
                     <strong>Категория:</strong> {page.category}
                   </li>
                   <li>
-                    <strong>Интент:</strong> {page.intent}
+                    <strong>Фокус:</strong> популярные добавки для понятной повседневной задачи
                   </li>
                   <li>
-                    <strong>Каноникал:</strong> {siteConfig.url}/{page.slug}/
+                    <strong>Формат:</strong> подборка с пояснениями, FAQ и переходами на близкие темы
                   </li>
                 </ul>
               </section>
 
               <section className="card">
-                <h2>Изображение страницы</h2>
+                <h2>Изображение категории</h2>
                 <div className="sidebar-image">
                   <div className="sidebar-image-frame">
                     {page.imageUrl ? (
@@ -217,13 +217,13 @@ export default async function SeoPage({ params }: { params: Promise<Params> }) {
                   </div>
                 </div>
                 <p className="sidebar-note">
-                  Для лучших CTR и визуального качества используй реальную ссылку на изображение в колонке
-                  <code> image_url </code>.
+                  Визуальный блок поддерживает страницу и помогает быстрее считать тему подборки еще до
+                  перехода к карточкам товаров.
                 </p>
               </section>
 
               <section className="card">
-                <h2>Похожие страницы</h2>
+                <h2>Соседние подборки</h2>
                 <div className="related-links">
                   {relatedPages.map((item) => (
                     <Link href={`/${item.slug}/`} key={item.slug}>

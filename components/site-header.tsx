@@ -14,8 +14,8 @@ export function SiteHeader({ compact = false }: SiteHeaderProps) {
           </Link>
           <nav className="topnav" aria-label="Главная навигация">
             <Link href="/">Главная</Link>
-            <Link href="/#seo-pages">SEO-страницы</Link>
-            <Link href="/#signup">Партнерская программа</Link>
+            <Link href="/#seo-pages">Подборки</Link>
+            <Link href="/#categories">Категории</Link>
           </nav>
         </div>
       </header>
@@ -32,19 +32,15 @@ export function SiteHeader({ compact = false }: SiteHeaderProps) {
           </Link>
 
           <div className="searchbar">
-            <input
-              aria-label="Поиск"
-              placeholder="Поиск по офферам, категориям и промо-материалам"
-              readOnly
-            />
+            <input aria-label="Поиск" placeholder="Поиск по витаминам, минералам и БАДам" readOnly />
             <span className="search-icon">⌕</span>
           </div>
 
           <div className="header-actions">
-            <Link href="#signup">Войти</Link>
-            <Link href="#signup">Кабинет</Link>
-            <Link href="#signup" className="cart-badge">
-              0
+            <Link href="#seo-pages">Подборки</Link>
+            <Link href="#categories">Категории</Link>
+            <Link href="#guide" className="cart-badge">
+              Гид
             </Link>
           </div>
         </div>
@@ -52,13 +48,13 @@ export function SiteHeader({ compact = false }: SiteHeaderProps) {
 
       <div className="header-nav-wrap">
         <div className="shell header-nav">
-          <a href="#supplements">Пищевые добавки</a>
-          <a href="#bestsellers">Спорт</a>
-          <a href="#categories">Личная гигиена</a>
-          <a href="#bestsellers">Красота</a>
-          <a href="#seo-pages">SEO-страницы</a>
-          <a href="#guarantee">Здоровый дом</a>
-          <a href="#signup">Для партнеров</a>
+          <a href="#seo-pages">Популярные страницы</a>
+          <a href="#categories">Витамины</a>
+          <a href="#categories">Минералы</a>
+          <a href="#categories">Омега и жирные кислоты</a>
+          <a href="#categories">Пробиотики</a>
+          <a href="#guide">Как выбирать</a>
+          <a href="#signup">Для офферов</a>
         </div>
       </div>
     </header>

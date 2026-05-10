@@ -3,7 +3,7 @@ import html
 import json
 from pathlib import Path
 
-from pipeline_utils import clean, slugify, title_case
+from pipeline_utils import clean, slugify
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,20 +19,23 @@ PUBLISHABLE_STATUSES = {"", "ready", "published", "publish"}
 def read_rows():
     with DATA_FILE.open("r", encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
+
     filtered = []
     for row in rows:
         status = clean(row.get("status", "")).lower()
         if status not in PUBLISHABLE_STATUSES:
             continue
+
         normalized = dict(row)
         keyword = clean(normalized.get("keyword", ""))
         normalized["slug"] = clean(normalized.get("slug", "")) or slugify(keyword)
         normalized["h1"] = clean(normalized.get("h1", "")) or keyword
         normalized["title"] = clean(normalized.get("title", "")) or f"{keyword} | iherbs.com.md"
         normalized["meta_description"] = clean(normalized.get("meta_description", "")) or (
-            f"Подборка и SEO-страница по запросу «{keyword}» для сайта iherbs.com.md."
+            f"Подборка по теме «{keyword}» с понятным объяснением, что сравнивать перед выбором добавки."
         )
         filtered.append(normalized)
+
     return filtered
 
 
@@ -56,6 +59,7 @@ def render_image(image_url: str, alt_text: str, frame_class: str) -> str:
             f'<img src="{escaped_url}" alt="{alt}" loading="lazy">'
             f"</div>"
         )
+
     return (
         f'<div class="{frame_class}">'
         '<div class="image-fallback">'
@@ -67,47 +71,17 @@ def render_image(image_url: str, alt_text: str, frame_class: str) -> str:
 
 def short_answer(row) -> str:
     keyword = clean(row["keyword"])
-    category = clean(row["category"]).lower()
-    page_type = clean(row.get("page_type", ""))
-    entity_name = clean(row.get("entity_name", "")) or keyword
-
-    type_specific_copy = {
-        "brand": (
-            f"Страница по бренду «{entity_name}» должна собирать линейки, FAQ, связки на ингредиенты "
-            "и навигацию по каталогу."
-        ),
-        "ingredient": (
-            f"Страница по ингредиенту «{entity_name}» лучше работает, когда отдельно раскрывает критерии выбора, "
-            "формы выпуска и соседние сценарии применения."
-        ),
-        "symptom": (
-            f"Страница по сценарию «{entity_name}» должна аккуратно объяснять контекст выбора и соседние решения "
-            "без медицинских обещаний."
-        ),
-        "audience": (
-            f"Страница под аудиторию «{entity_name}» позволяет показать релевантные критерии выбора, форму приема "
-            "и FAQ именно для этого сегмента."
-        ),
-        "form_factor": (
-            f"Страница по форм-фактору «{entity_name}» должна сравнивать удобство приема, маркировку и сценарии "
-            "использования конкретной формы выпуска."
-        ),
-    }
-
-    if page_type in type_specific_copy:
+    intro = clean(row.get("intro", ""))
+    if intro:
         return (
-            f"{type_specific_copy[page_type]} Для кластера «{category}» это помогает точнее совпадать с формулировкой пользователя."
+            f"{intro} Подборка по теме «{keyword}» помогает быстрее понять, какие варианты стоит сравнить "
+            "в первую очередь и на какие характеристики смотреть перед покупкой."
         )
 
     return (
-        f"Если вы продвигаете запрос «{keyword}», лучше всего работает отдельная страница под этот интент: "
-        f"с кратким ответом, блоком выбора, FAQ, связанными материалами и понятным CTA. "
-        f"Для кластера «{category}» это помогает точнее совпадать с формулировкой пользователя."
+        f"Подборка по теме «{keyword}» помогает быстрее отсеять неподходящие варианты и перейти к тем добавкам, "
+        "которые удобнее сравнивать по форме, дозировке и составу."
     )
-
-
-def translit_slug_title(slug: str) -> str:
-    return title_case(slug.replace("-", " ").strip())
 
 
 def make_schema(row, canonical_url):
@@ -121,10 +95,7 @@ def make_schema(row, canonical_url):
             {
                 "@type": "Question",
                 "name": question,
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": answer,
-                },
+                "acceptedAnswer": {"@type": "Answer", "text": answer},
             }
         )
 
@@ -141,24 +112,9 @@ def make_schema(row, canonical_url):
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Главная",
-                    "item": SITE_URL,
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": clean(row["category"]),
-                    "item": SITE_URL,
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 3,
-                    "name": clean(row["keyword"]),
-                    "item": canonical_url,
-                },
+                {"@type": "ListItem", "position": 1, "name": "Главная", "item": SITE_URL},
+                {"@type": "ListItem", "position": 2, "name": clean(row["category"]), "item": SITE_URL},
+                {"@type": "ListItem", "position": 3, "name": clean(row["keyword"]), "item": canonical_url},
             ],
         },
     ]
@@ -199,7 +155,6 @@ def render_page(row, rows, template):
         "{{ASSET_PREFIX}}": "../",
         "{{SITE_ROOT}}": "../",
         "{{CATEGORY}}": html.escape(clean(row["category"])),
-        "{{INTENT}}": html.escape(clean(row["intent"])),
         "{{KEYWORD}}": html.escape(clean(row["keyword"])),
         "{{H1}}": html.escape(clean(row["h1"])),
         "{{INTRO}}": html.escape(clean(row["intro"])),
@@ -243,8 +198,8 @@ def build_hub(rows):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SEO Hub | iherbs.com.md</title>
-  <meta name="description" content="Карта сгенерированных SEO-страниц для iherbs.com.md">
+  <title>Подборки добавок | iherbs.com.md</title>
+  <meta name="description" content="Каталог подборок по витаминам, минералам, пробиотикам и другим популярным добавкам.">
   <link rel="stylesheet" href="./assets/programmatic.css">
 </head>
 <body>
@@ -252,7 +207,7 @@ def build_hub(rows):
     <div class="wrap topbar">
       <a class="brand" href="../index.html">iherbs.com.md</a>
       <nav class="topnav">
-        <a href="../index.html">Лендинг</a>
+        <a href="../index.html">Главная</a>
         <a href="./sitemap.xml">Sitemap</a>
       </nav>
     </div>
@@ -260,9 +215,9 @@ def build_hub(rows):
   <main class="wrap">
     <article class="page">
       <section class="hero">
-        <p class="eyebrow">Programmatic SEO</p>
-        <h1>Каталог сгенерированных страниц под long-tail запросы</h1>
-        <p class="lead">Ниже находится hub-страница, которая помогает быстрее проверить структуру кластера и логически связать ключевые страницы между собой.</p>
+        <p class="eyebrow">Витрина добавок</p>
+        <h1>Каталог подборок по популярным витаминам, минералам и БАДам</h1>
+        <p class="lead">Ниже собраны страницы по востребованным темам: магний, омега-3, витамин D3, пробиотики, коллаген, железо, цинк и другие категории, которые удобно развивать под партнерские офферы.</p>
       </section>
       <section class="main-column" style="margin-top:20px;">
         {''.join(cards)}
@@ -275,8 +230,7 @@ def build_hub(rows):
 
 
 def build_sitemap(rows):
-    items = []
-    items.append(f"<url><loc>{SITE_URL}</loc></url>")
+    items = [f"<url><loc>{SITE_URL}</loc></url>"]
     for row in rows:
         items.append(f"<url><loc>{SITE_URL}{clean(row['slug'])}/</loc></url>")
     return (
@@ -299,6 +253,7 @@ def main():
     rows = read_rows()
     if not rows:
         raise ValueError("No publishable rows found in data/keywords.csv")
+
     ensure_dirs()
     template = TEMPLATE_FILE.read_text(encoding="utf-8")
     css = CSS_FILE.read_text(encoding="utf-8")

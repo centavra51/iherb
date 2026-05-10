@@ -10,9 +10,9 @@ export default function HomePage() {
     <main className="site-root">
       <div className="promo-strip">
         <div className="shell promo-inner">
-          <div className="promo-pill">Editorial retail system</div>
-          <p>Уникальный wellness-storefront на Next.js для партнерских офферов и SEO-кластеров</p>
-          <Link href="#signup">Подключиться</Link>
+          <div className="promo-pill">Подборки под спрос</div>
+          <p>Витамины, минералы и БАДы с понятными текстами под будущие партнерские офферы</p>
+          <Link href="#signup">Смотреть подборки</Link>
         </div>
       </div>
 
@@ -22,18 +22,20 @@ export default function HomePage() {
         <div className="shell">
           <div className="home-hero-card">
             <div className="home-hero-copy">
-              <p className="eyebrow">Wellness commerce system</p>
-              <h1>Витрина с мягкой editorial-подачей, которая выглядит как самостоятельный бренд, а не копия маркетплейса</h1>
+              <p className="eyebrow">Витрина добавок</p>
+              <h1>Подборки популярных витаминов и БАДов, которые легко превратить в рабочие партнерские страницы</h1>
               <p className="hero-text">
-                Этот шаблон специально смещен в сторону более премиального и спокойного visual language:
-                асимметричный hero, мягкие поверхности, теплые нейтрали и витринные SEO-страницы с изображениями.
+                Здесь собраны темы, по которым люди действительно ищут решения: магний для сна, омега-3,
+                витамин D3, пробиотики, коллаген, железо и другие востребованные добавки. На каждой странице
+                уже есть объяснение, кому подходит категория, что сравнивать в составе и какие форматы чаще
+                выбирают для ежедневного приема.
               </p>
               <div className="hero-actions">
-                <a className="button button-primary" href="#signup">
-                  Стать партнером
+                <a className="button button-primary" href="#seo-pages">
+                  Открыть страницы
                 </a>
-                <a className="button button-light" href="#seo-pages">
-                  Смотреть SEO-страницы
+                <a className="button button-light" href="#categories">
+                  Посмотреть категории
                 </a>
               </div>
             </div>
@@ -42,42 +44,42 @@ export default function HomePage() {
               <div className="hero-orb orb-one" />
               <div className="hero-orb orb-two" />
               <div className="hero-product-card card-main">
-                <span>Daily essentials</span>
-                <strong>Curated formulas</strong>
+                <span>Топ-направления</span>
+                <strong>Магний, омега-3, D3</strong>
               </div>
               <div className="hero-product-card card-side">
-                <span>Functional nutrition</span>
-                <strong>Clean ingredients</strong>
+                <span>Повседневный спрос</span>
+                <strong>Пробиотики, железо, цинк</strong>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="guarantee" id="guarantee">
+      <section className="guarantee" id="guide">
         <div className="shell guarantee-grid">
           <div className="guarantee-title">
-            <h2>Готовый фундамент для индексации, масштабирования и сильного визуального восприятия</h2>
+            <h2>Контент уже собран так, чтобы человеку было проще выбрать добавку, а вам проще встроить оффер</h2>
             <p>
-              Чистый SSR/SSG-HTML, semantic layout, schema, статические URL, перелинковка и карточки под коммерческий
-              intent.
+              Вместо технических заглушек сайт получает нормальный редакционный тон: короткий ответ по теме,
+              критерии выбора, FAQ и перелинковку на близкие подборки.
             </p>
           </div>
           <article className="icon-card">
-            <span>✓</span>
-            <strong>Indexable HTML</strong>
+            <span>01</span>
+            <strong>Популярные категории</strong>
           </article>
           <article className="icon-card">
-            <span>⌂</span>
-            <strong>Google Sheets flow</strong>
+            <span>02</span>
+            <strong>Понятные критерии выбора</strong>
           </article>
           <article className="icon-card">
-            <span>❀</span>
-            <strong>Beautiful design</strong>
+            <span>03</span>
+            <strong>Мягкий экспертный тон</strong>
           </article>
           <article className="icon-card">
-            <span>↺</span>
-            <strong>Scalable to 1000+</strong>
+            <span>04</span>
+            <strong>Готово под партнерские ссылки</strong>
           </article>
         </div>
       </section>
@@ -85,16 +87,14 @@ export default function HomePage() {
       <section className="seo-section" id="seo-pages">
         <div className="shell">
           <div className="section-head">
-            <h2>Сгенерированные SEO-страницы</h2>
-            <span>{pages.length} опубликованных URL</span>
+            <h2>Готовые страницы-подборки</h2>
+            <span>{pages.length} опубликованных тем</span>
           </div>
 
           <div className="seo-grid">
             {pages.map((page) => (
               <article key={page.slug} className="seo-card">
-                <p className="seo-card-tag">
-                  {page.category} · {page.intent}
-                </p>
+                <p className="seo-card-tag">{page.category} · подборка</p>
                 <h3>{page.h1}</h3>
                 <p>{page.intro}</p>
                 <div className="seo-benefits">
@@ -114,25 +114,25 @@ export default function HomePage() {
       <section className="categories" id="categories">
         <div className="shell">
           <div className="section-head">
-            <h2>Кластеры для масштабирования</h2>
+            <h2>Основные направления витрины</h2>
           </div>
 
           <div className="category-grid">
             <article className="category-item">
               <div className="category-icon">01</div>
-              <h3>Ингредиенты</h3>
+              <h3>Минералы</h3>
             </article>
             <article className="category-item">
               <div className="category-icon">02</div>
-              <h3>Симптомы и задачи</h3>
+              <h3>Витамины</h3>
             </article>
             <article className="category-item">
               <div className="category-icon">03</div>
-              <h3>Аудитории</h3>
+              <h3>Жирные кислоты</h3>
             </article>
             <article className="category-item">
               <div className="category-icon">04</div>
-              <h3>Форматы</h3>
+              <h3>Пробиотики и коллаген</h3>
             </article>
           </div>
         </div>
@@ -141,16 +141,16 @@ export default function HomePage() {
       <section className="signup" id="signup">
         <div className="shell signup-box">
           <div className="signup-copy">
-            <h2>Подключите Google Sheets и масштабируйте контент через Next.js</h2>
+            <h2>Витрина уже подготовлена под популярные запросы о витаминах и БАДах</h2>
             <p>
-              Веди строки в Google Sheets, экспортируй CSV, запускай импорт и получай новые SEO-страницы без ручной
-              верстки каждого URL.
+              Дальше можно просто подставлять карточки товаров, партнерские ссылки, цены, отзывы и отдельные
+              блоки с акциями, не переписывая каждый URL с нуля.
             </p>
           </div>
           <div className="signup-form">
-            <input placeholder="Email для связи" readOnly />
+            <input placeholder="Подборки под витамины и БАДы" readOnly />
             <button className="button button-primary" type="button">
-              Подключить поток
+              Перейти к страницам
             </button>
           </div>
         </div>
