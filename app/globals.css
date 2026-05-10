@@ -169,6 +169,31 @@ input {
   white-space: nowrap;
 }
 
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.language-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.language-chip.is-active {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
 .cart-badge {
   display: grid;
   place-items: center;
@@ -727,6 +752,13 @@ input {
   text-align: center;
 }
 
+.not-found-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 980px) {
   .header-main,
   .topbar,
@@ -750,7 +782,8 @@ input {
   .hero-actions,
   .cta-row,
   .section-head,
-  .topnav {
+  .topnav,
+  .not-found-actions {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -758,6 +791,11 @@ input {
   .header-main,
   .topbar {
     grid-template-columns: 1fr;
+  }
+
+  .language-switcher {
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .logo-text,
