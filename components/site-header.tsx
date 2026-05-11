@@ -77,7 +77,12 @@ export function SiteHeader({ compact = false, locale, slug }: SiteHeaderProps) {
       <div className="header-main-shell">
         <div className="shell header-main">
           <Link className="logo" href={getLocalePath(locale)}>
-            <span className="logo-mark">V</span>
+            <span className="logo-mark" aria-hidden="true">
+              <span className="logo-branch" />
+              <span className="logo-leaf leaf-one" />
+              <span className="logo-leaf leaf-two" />
+              <span className="logo-leaf leaf-three" />
+            </span>
             <span className="logo-text">iherbs.com.md</span>
           </Link>
 
