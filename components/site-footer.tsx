@@ -3,17 +3,17 @@ import { getLocalePath, type Locale } from "../lib/i18n";
 
 const labels = {
   ru: {
-    title: "Контентная витрина для витаминов, минералов, пробиотиков и других популярных добавок",
+    title: "Подборки витаминов, минералов, пробиотиков и других популярных добавок",
     copy:
-      "Страницы оформлены как полезные подборки: без пустых шаблонов, без технических подсказок и с фокусом на понятный выбор продукта перед переходом к карточке товара.",
+      "Страницы оформлены как полезные подборки с понятными объяснениями, краткими советами по выбору и удобными переходами между похожими темами.",
     home: "Главная",
     pages: "Подборки",
     categories: "Категории"
   },
   ro: {
-    title: "Vitrina de continut pentru vitamine, minerale, probiotice si alte suplimente populare",
+    title: "Selectii de vitamine, minerale, probiotice si alte suplimente populare",
     copy:
-      "Paginile sunt construite ca selectii utile, fara sabloane goale si fara text tehnic inutil, cu accent pe alegerea clara a produsului inainte de trecerea la oferta.",
+      "Paginile sunt construite ca selectii utile, cu explicatii clare, sfaturi scurte pentru alegere si treceri usoare intre teme asemanatoare.",
     home: "Acasa",
     pages: "Selectii",
     categories: "Categorii"

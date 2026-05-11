@@ -7,8 +7,8 @@ export default function NotFound() {
         <p className="eyebrow">404</p>
         <h1>Страница не найдена / Pagina nu a fost gasita</h1>
         <p>
-          Похоже, такой страницы сейчас нет. Вернитесь на русскую или румынскую версию витрины и
-          откройте другие подборки.
+          Похоже, такой страницы сейчас нет. Вернитесь на русскую или румынскую версию сайта и
+          откройте другие подборки витаминов и добавок.
         </p>
         <div className="not-found-actions">
           <Link href="/ru/" className="button button-primary">

@@ -11,84 +11,85 @@ type Params = { locale: string };
 
 const copy = {
   ru: {
-    title: "Подборки витаминов и БАДов",
+    title: "Подборки витаминов и добавок",
     description:
-      "Русскоязычные подборки витаминов, минералов и БАДов с отдельными SEO-страницами, понятной навигацией и правильными языковыми альтернативами.",
-    promoPill: "Подборки под спрос",
+      "Русскоязычные подборки витаминов, минералов и добавок с понятными описаниями, удобной навигацией и отдельными страницами по популярным темам.",
+    promoPill: "Популярные подборки",
     promoText:
-      "Витамины, минералы и БАДы с понятными текстами под будущие партнерские офферы",
+      "Витамины, минералы и добавки с простыми объяснениями, критериями выбора и частыми вопросами",
     promoLink: "Смотреть подборки",
-    eyebrow: "Витрина добавок",
+    eyebrow: "Витамины и добавки",
     heroTitle:
-      "Подборки популярных витаминов и БАДов, которые легко превратить в рабочие SEO-страницы",
+      "Подборки популярных витаминов и добавок с понятными описаниями и удобной навигацией",
     heroText:
-      "Здесь собраны темы, по которым люди действительно ищут решения: магний для сна, омега-3, витамин D3, пробиотики, коллаген, железо и другие востребованные добавки. У каждой страницы есть понятное объяснение, кому подходит категория, что сравнивать в составе и какие форматы чаще выбирают для ежедневного приема.",
+      "Здесь собраны темы, по которым люди действительно ищут информацию: магний для сна, омега-3, витамин D3, пробиотики, коллаген, железо и другие популярные добавки. На каждой странице есть краткое объяснение, что сравнивать в составе, кому обычно подходит категория и какие форматы чаще выбирают для ежедневного приема.",
     heroPrimary: "Открыть страницы",
     heroSecondary: "Посмотреть категории",
-    topDirections: "Топ-направления",
+    topDirections: "Популярные темы",
     topDirectionsValue: "Магний, омега-3, D3",
-    dailyDemand: "Повседневный спрос",
+    dailyDemand: "Часто выбирают",
     dailyDemandValue: "Пробиотики, железо, цинк",
-    guideTitle: "Контент уже собран так, чтобы человеку было проще выбрать добавку, а вам проще встроить оффер",
+    guideTitle:
+      "Материалы собраны так, чтобы человеку было проще разобраться в добавках и выбрать подходящий вариант",
     guideText:
-      "Вместо технических заглушек сайт получает нормальный редакционный тон: короткий ответ по теме, критерии выбора, FAQ и перелинковку на близкие подборки.",
+      "На страницах есть короткое введение по теме, основные критерии выбора, ответы на частые вопросы и ссылки на похожие категории, чтобы сравнение было удобнее.",
     guideCards: [
       "Популярные категории",
       "Понятные критерии выбора",
-      "Мягкий экспертный тон",
-      "Готово под партнерские ссылки"
+      "Спокойный полезный тон",
+      "Удобная навигация по темам"
     ],
-    pagesTitle: "Готовые страницы-подборки",
+    pagesTitle: "Готовые подборки",
     pagesCountSuffix: "опубликованных тем",
     pageTagSuffix: "подборка",
     openPage: "Открыть страницу",
-    categoriesTitle: "Основные направления витрины",
+    categoriesTitle: "Основные категории",
     categories: ["Минералы", "Витамины", "Жирные кислоты", "Пробиотики и коллаген"],
-    signupTitle: "Витрина уже подготовлена под популярные запросы о витаминах и БАДах",
+    signupTitle: "Подборки по популярным витаминам и добавкам",
     signupText:
-      "Дальше можно подставлять карточки товаров, партнерские ссылки, цены, отзывы и отдельные блоки с акциями, не переписывая каждый URL с нуля.",
-    signupPlaceholder: "Подборки под витамины и БАДы",
+      "Здесь можно быстро перейти к темам, сравнить разные категории и выбрать страницы с более подробным описанием состава, формата и особенностей приема.",
+    signupPlaceholder: "Витамины, минералы и добавки",
     signupButton: "Перейти к страницам"
   },
   ro: {
     title: "Selectii de vitamine si suplimente",
     description:
-      "Pagini in romana pentru vitamine, minerale si suplimente, cu URL-uri separate pe limbi, hreflang corect si structura pregatita pentru SEO.",
-    promoPill: "Selectii pentru cerere",
+      "Pagini in romana despre vitamine, minerale si suplimente, cu descrieri clare, navigatie usoara si explicatii utile pentru alegere.",
+    promoPill: "Selectii populare",
     promoText:
-      "Vitamine, minerale si suplimente cu texte clare pentru viitoare oferte partenere",
+      "Vitamine, minerale si suplimente explicate simplu, cu criterii de alegere si intrebari frecvente",
     promoLink: "Vezi selectiile",
-    eyebrow: "Vitrina de suplimente",
+    eyebrow: "Vitamine si suplimente",
     heroTitle:
-      "Selectii pentru vitamine si suplimente populare, construite ca pagini SEO clare in romana",
+      "Selectii de vitamine si suplimente populare, cu explicatii clare si navigatie usoara",
     heroText:
-      "Aici sunt grupate teme pe care utilizatorii le cauta constant: magneziu pentru somn, omega-3, vitamina D3, probiotice, colagen, fier si alte suplimente populare. Fiecare pagina are explicatii clare, criterii de comparatie, intrebari frecvente si legaturi interne catre teme apropiate.",
+      "Aici sunt grupate teme pe care utilizatorii le cauta constant: magneziu pentru somn, omega-3, vitamina D3, probiotice, colagen, fier si alte suplimente populare. Fiecare pagina include explicatii simple, criterii de comparatie, intrebari frecvente si legaturi spre teme apropiate.",
     heroPrimary: "Deschide paginile",
     heroSecondary: "Vezi categoriile",
-    topDirections: "Directii populare",
+    topDirections: "Teme populare",
     topDirectionsValue: "Magneziu, omega-3, D3",
-    dailyDemand: "Cerere constanta",
+    dailyDemand: "Alese frecvent",
     dailyDemandValue: "Probiotice, fier, zinc",
     guideTitle:
-      "Continutul este structurat astfel incat utilizatorului sa-i fie mai simplu sa aleaga, iar site-ului sa-i fie mai usor sa creasca SEO",
+      "Continutul este organizat astfel incat alegerea vitaminelor si suplimentelor sa fie mai simpla",
     guideText:
-      "In locul unor pagini seci, site-ul primeste un ton editorial normal: raspuns scurt pe subiect, criterii de alegere, FAQ si legaturi interne spre selectii apropiate.",
+      "Paginile includ o introducere scurta, criterii clare de alegere, raspunsuri la intrebarile frecvente si legaturi spre categorii similare pentru comparatie mai usoara.",
     guideCards: [
-      "Categorii cautate",
+      "Categorii populare",
       "Criterii clare de alegere",
       "Ton util si usor de citit",
-      "Pregatit pentru oferte partenere"
+      "Navigatie simpla intre teme"
     ],
-    pagesTitle: "Pagini gata publicate",
+    pagesTitle: "Selectii publicate",
     pagesCountSuffix: "teme publicate",
     pageTagSuffix: "selectie",
     openPage: "Deschide pagina",
-    categoriesTitle: "Directiile principale ale vitrinei",
+    categoriesTitle: "Categorii principale",
     categories: ["Minerale", "Vitamine", "Acizi grasi", "Probiotice si colagen"],
-    signupTitle: "Vitrina este deja pregatita pentru cautari populare despre vitamine si suplimente",
+    signupTitle: "Selectii pentru vitamine si suplimente cautate frecvent",
     signupText:
-      "Mai departe poti adauga produse, linkuri partenere, preturi, recenzii si blocuri promotionale fara sa reconstruiesti fiecare pagina de la zero.",
-    signupPlaceholder: "Selectii pentru vitamine si suplimente",
+      "Poti deschide rapid temele principale, compara categoriile si merge spre pagini cu explicatii mai detaliate despre compozitie, format si administrare.",
+    signupPlaceholder: "Vitamine, minerale si suplimente",
     signupButton: "Mergi la pagini"
   }
 } as const;

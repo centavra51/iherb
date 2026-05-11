@@ -88,7 +88,7 @@ const romanianOverrides: Record<string, PageOverride> = {
     category: "Acizi grasi",
     title: "Omega-3 pentru femei: cum compari compozitia, concentratia si forma | iherbs.com.md",
     metaDescription:
-      "Pagina SEO in romana pentru omega-3 pentru femei: compara EPA, DHA, concentratia per portie si formatul potrivit pentru administrare zilnica.",
+      "Pagina in romana despre omega-3 pentru femei: compara EPA, DHA, concentratia per portie si formatul potrivit pentru administrare zilnica.",
     h1: "Omega-3 pentru femei: cum compari compozitia, concentratia si forma",
     intro:
       "Pagina este gandita pentru cei care vor sa compare calm formulele populare de omega-3 si sa inteleaga diferenta dintre concentratie, marimea portiei si confortul de administrare.",
@@ -256,7 +256,7 @@ const romanianOverrides: Record<string, PageOverride> = {
     category: "Colagen",
     title: "Colagen pentru articulatii: cum alegi tipul, portia si formula | iherbs.com.md",
     metaDescription:
-      "Ghid SEO in romana pentru colagen pentru articulatii: compara tipul de colagen, marimea portiei si ingredientele din formula.",
+      "Ghid in romana pentru colagen pentru articulatii: compara tipul de colagen, marimea portiei si ingredientele din formula.",
     h1: "Colagen pentru articulatii: cum alegi tipul, portia si formula",
     intro:
       "Pagina te ajuta sa compari formulele populare de colagen pentru articulatii dupa tip, doza si ingredientele care apar frecvent in aceeasi formula.",
@@ -281,7 +281,7 @@ const romanianOverrides: Record<string, PageOverride> = {
       {
         question: "Pentru cine este utila o selectie separata de colagen pentru articulatii?",
         answer:
-          "Pentru cei care vor sa compare rapid formulele orientate spre aceasta categorie, fara sa parcurga oferte foarte diferite intre ele."
+          "Pentru cei care vor sa compare rapid formulele orientate spre aceasta categorie, fara sa parcurga produse foarte diferite intre ele."
       }
     ],
     ctaPrimary: "Vezi colagen",
@@ -393,7 +393,7 @@ const romanianOverrides: Record<string, PageOverride> = {
       {
         question: "Pentru cine este utila o selectie separata de zinc pentru imunitate?",
         answer:
-          "Pentru cei care vor sa filtreze rapid ofertele acestei categorii si sa compare simplu doza, formatul si compozitia."
+          "Pentru cei care vor sa filtreze rapid produsele din aceasta categorie si sa compare simplu doza, formatul si compozitia."
       }
     ],
     ctaPrimary: "Vezi zinc",
@@ -424,7 +424,7 @@ const romanianOverrides: Record<string, PageOverride> = {
     category: "Vitamine",
     title: "Complex de vitamine B pentru energie: cum compari compozitia si doza | iherbs.com.md",
     metaDescription:
-      "Pagina SEO in romana pentru complex de vitamine B pentru energie: compara vitaminele din formula, doza per portie si modul de administrare.",
+      "Pagina in romana despre complexul de vitamine B pentru energie: compara vitaminele din formula, doza per portie si modul de administrare.",
     h1: "Complex de vitamine B pentru energie: cum compari compozitia si doza",
     intro:
       "Aceasta selectie este pentru cei care vor sa compare rapid formulele de vitamine B pentru energie dupa compozitie, portie si claritatea utilizarii zilnice.",

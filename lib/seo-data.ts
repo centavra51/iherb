@@ -125,7 +125,7 @@ export function getSeoPages(): SeoPage[] {
       title: clean(row.title) || `${clean(row.keyword)} | ${siteConfig.name}`,
       metaDescription:
         clean(row.meta_description) ||
-        `Подборка и SEO-страница по запросу «${clean(row.keyword)}» для сайта ${siteConfig.name}.`,
+        `Подборка по теме «${clean(row.keyword)}» с кратким описанием, критериями выбора и ответами на частые вопросы на сайте ${siteConfig.name}.`,
       h1: clean(row.h1) || clean(row.keyword),
       intro: clean(row.intro),
       benefits: clean(row.benefits).split("|").map(clean).filter(Boolean),
