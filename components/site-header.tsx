@@ -13,30 +13,24 @@ const labels = {
     home: "Главная",
     pages: "Подборки",
     categories: "Категории",
-    guide: "Гид",
     searchPlaceholder: "Поиск по витаминам, минералам и БАДам",
     popular: "Популярные страницы",
     vitamins: "Витамины",
     minerals: "Минералы",
     fats: "Омега и жирные кислоты",
-    probiotics: "Пробиотики",
-    howToChoose: "Как выбирать",
-    offers: "Для офферов"
+    probiotics: "Пробиотики"
   },
   ro: {
     navAria: "Navigatie principala",
     home: "Acasa",
     pages: "Selectii",
     categories: "Categorii",
-    guide: "Ghid",
     searchPlaceholder: "Cauta vitamine, minerale si suplimente",
     popular: "Pagini populare",
     vitamins: "Vitamine",
     minerals: "Minerale",
     fats: "Omega si acizi grasi",
-    probiotics: "Probiotice",
-    howToChoose: "Cum alegi",
-    offers: "Pentru oferte"
+    probiotics: "Probiotice"
   }
 } as const;
 
@@ -95,9 +89,6 @@ export function SiteHeader({ compact = false, locale, slug }: SiteHeaderProps) {
           <div className="header-actions">
             <Link href={`${getLocalePath(locale)}#seo-pages`}>{copy.pages}</Link>
             <Link href={`${getLocalePath(locale)}#categories`}>{copy.categories}</Link>
-            <Link href={`${getLocalePath(locale)}#guide`} className="cart-badge">
-              {copy.guide}
-            </Link>
             <LanguageSwitcher locale={locale} slug={slug} />
           </div>
         </div>
@@ -110,8 +101,6 @@ export function SiteHeader({ compact = false, locale, slug }: SiteHeaderProps) {
           <a href={`${getLocalePath(locale)}#categories`}>{copy.minerals}</a>
           <a href={`${getLocalePath(locale)}#categories`}>{copy.fats}</a>
           <a href={`${getLocalePath(locale)}#categories`}>{copy.probiotics}</a>
-          <a href={`${getLocalePath(locale)}#guide`}>{copy.howToChoose}</a>
-          <a href={`${getLocalePath(locale)}#signup`}>{copy.offers}</a>
         </div>
       </div>
     </header>
