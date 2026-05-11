@@ -1,32 +1,31 @@
 import Image from "next/image";
-import Link from "next/link";
-import { getLocalePath, type Locale } from "../lib/i18n";
+import type { Locale } from "../lib/i18n";
 import type { LocalizedSeoPage } from "../lib/localized-seo";
 
 const labels = {
   ru: {
-    forms: "Формы",
-    formsText: "Капсулы, порошки, жевательные формы и жидкие варианты под разные сценарии приема.",
+    forms: "Форма",
+    formsText: "Капсулы, порошок, жевательные или жидкие варианты.",
     composition: "Состав",
-    compositionText: "Сравнивайте основное действующее вещество, дозировку на порцию и дополнительные компоненты.",
-    choice: "Выбор",
-    choiceText: "Ориентируйтесь на задачу, удобство приема и понятную маркировку на упаковке.",
+    compositionText: "Сравните дозировку на порцию и основные компоненты.",
+    choice: "Удобство",
+    choiceText: "Оцените размер порции и простоту ежедневного приема.",
     badge: "Подборка по теме:",
-    shortGuide: "Короткий ориентир",
+    shortGuide: "Главное перед покупкой",
     compareThree: "Сравните 3 вещи",
-    compareThreeText: "Форму выпуска, дозировку на порцию и чистоту состава без лишних обещаний."
+    compareThreeText: "Форму, дозировку и состав без лишних обещаний."
   },
   ro: {
-    forms: "Forme",
-    formsText: "Capsule, pulberi, forme masticabile si variante lichide pentru scenarii diferite de administrare.",
+    forms: "Forma",
+    formsText: "Capsule, pulbere, forme masticabile sau variante lichide.",
     composition: "Compozitie",
-    compositionText: "Compara ingredientul principal, doza per portie si componentele suplimentare din formula.",
-    choice: "Alegere",
-    choiceText: "Uita-te la scop, confortul administrarii si claritatea etichetei de pe ambalaj.",
+    compositionText: "Compara doza per portie si ingredientele principale.",
+    choice: "Confort",
+    choiceText: "Verifica marimea portiei si usurinta administrarii zilnice.",
     badge: "Selectie pe tema:",
-    shortGuide: "Repere rapide",
+    shortGuide: "Esential inainte de comanda",
     compareThree: "Compara 3 lucruri",
-    compareThreeText: "Forma produsului, doza per portie si claritatea formulei fara promisiuni inutile."
+    compareThreeText: "Forma, doza si compozitia fara promisiuni inutile."
   }
 } as const;
 
@@ -54,14 +53,6 @@ export function SeoHero({ page, locale }: { page: LocalizedSeoPage; locale: Loca
             <strong>{copy.choice}</strong>
             <span>{copy.choiceText}</span>
           </div>
-        </div>
-        <div className="cta-row">
-          <Link className="button button-primary" href={`${getLocalePath(locale)}#seo-pages`}>
-            {page.ctaPrimary}
-          </Link>
-          <Link className="button button-secondary" href={`${getLocalePath(locale)}#categories`}>
-            {page.ctaSecondary}
-          </Link>
         </div>
       </div>
 
