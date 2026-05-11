@@ -29,16 +29,6 @@ const copy = {
     topDirectionsValue: "Магний, омега-3, D3",
     dailyDemand: "Часто выбирают",
     dailyDemandValue: "Пробиотики, железо, цинк",
-    guideTitle:
-      "Материалы собраны так, чтобы человеку было проще разобраться в добавках и выбрать подходящий вариант",
-    guideText:
-      "На страницах есть короткое введение по теме, основные критерии выбора, ответы на частые вопросы и ссылки на похожие категории, чтобы сравнение было удобнее.",
-    guideCards: [
-      "Популярные категории",
-      "Понятные критерии выбора",
-      "Спокойный полезный тон",
-      "Удобная навигация по темам"
-    ],
     pagesTitle: "Готовые подборки",
     pagesCountSuffix: "опубликованных тем",
     pageTagSuffix: "подборка",
@@ -70,16 +60,6 @@ const copy = {
     topDirectionsValue: "Magneziu, omega-3, D3",
     dailyDemand: "Alese frecvent",
     dailyDemandValue: "Probiotice, fier, zinc",
-    guideTitle:
-      "Continutul este organizat astfel incat alegerea vitaminelor si suplimentelor sa fie mai simpla",
-    guideText:
-      "Paginile includ o introducere scurta, criterii clare de alegere, raspunsuri la intrebarile frecvente si legaturi spre categorii similare pentru comparatie mai usoara.",
-    guideCards: [
-      "Categorii populare",
-      "Criterii clare de alegere",
-      "Ton util si usor de citit",
-      "Navigatie simpla intre teme"
-    ],
     pagesTitle: "Selectii publicate",
     pagesCountSuffix: "teme publicate",
     pageTagSuffix: "selectie",
@@ -180,21 +160,6 @@ export default async function LocaleHomePage({ params }: { params: Promise<Param
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="guarantee" id="guide">
-        <div className="shell guarantee-grid">
-          <div className="guarantee-title">
-            <h2>{pageCopy.guideTitle}</h2>
-            <p>{pageCopy.guideText}</p>
-          </div>
-          {pageCopy.guideCards.map((item, index) => (
-            <article className="icon-card" key={item}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{item}</strong>
-            </article>
-          ))}
         </div>
       </section>
 
