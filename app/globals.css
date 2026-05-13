@@ -46,39 +46,6 @@ input {
   margin: 0 auto;
 }
 
-.promo-strip {
-  background: linear-gradient(90deg, #fff7ed, #fffdf8);
-  border-bottom: 1px solid rgba(197, 108, 61, 0.14);
-}
-
-.promo-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  min-height: 48px;
-  font-size: 14px;
-}
-
-.promo-pill {
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: var(--orange);
-  color: #fff;
-  font-weight: 700;
-}
-
-.promo-inner p {
-  margin: 0;
-  flex: 1;
-  font-weight: 600;
-}
-
-.promo-inner a {
-  color: var(--green-dark);
-  font-weight: 700;
-}
-
 .site-header,
 .page-header {
   position: sticky;
@@ -292,6 +259,22 @@ input {
   flex-direction: column;
 }
 
+.hero-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.hero-points span {
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: #f8fbf4;
+  border: 1px solid #dbe8d0;
+  color: var(--green-dark);
+  font-weight: 700;
+}
+
 .home-hero-copy h1,
 .hero h1,
 .not-found-card h1 {
@@ -381,6 +364,67 @@ input {
 .hero-media {
   position: relative;
   min-height: 360px;
+}
+
+.home-hero-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-content: start;
+}
+
+.showcase-card {
+  overflow: hidden;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.94);
+  border: 1px solid var(--line);
+  box-shadow: 0 14px 30px rgba(84, 73, 52, 0.05);
+}
+
+.showcase-card:first-child {
+  grid-column: 1 / -1;
+}
+
+.showcase-card-media,
+.seo-card-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #f3ebda, #ffffff);
+}
+
+.showcase-card-media {
+  min-height: 210px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.seo-card-media {
+  min-height: 240px;
+  margin-bottom: 16px;
+}
+
+.showcase-card-media img,
+.seo-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.showcase-card-copy {
+  display: grid;
+  gap: 6px;
+  padding: 16px 18px 18px;
+}
+
+.showcase-card-copy strong {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.showcase-card-copy span {
+  color: var(--muted);
 }
 
 .hero-orb {
@@ -486,6 +530,12 @@ input {
   margin-bottom: 18px;
 }
 
+.section-note {
+  margin: -2px 0 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .seo-grid,
 .category-grid {
   display: grid;
@@ -500,6 +550,13 @@ input {
   margin: 8px 0 12px;
   font-size: 24px;
   line-height: 1.2;
+}
+
+.card-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
 }
 
 .seo-card-tag {
@@ -873,8 +930,8 @@ input {
 }
 
 @media (max-width: 720px) {
-  .promo-inner,
   .hero-actions,
+  .card-actions,
   .cta-row,
   .buy-banner-actions,
   .section-head,

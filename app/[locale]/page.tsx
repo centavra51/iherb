@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteFooter } from "../../components/site-footer";
@@ -14,65 +15,51 @@ const copy = {
     title: "Подборки витаминов и добавок",
     description:
       "Русскоязычные подборки витаминов, минералов и добавок с понятными описаниями, удобной навигацией и отдельными страницами по популярным темам.",
-    promoPill: "Популярные подборки",
-    promoText:
-      "Витамины, минералы и добавки с простыми объяснениями, критериями выбора и частыми вопросами",
-    promoLink: "Смотреть подборки",
     eyebrow: "Витамины и добавки",
-    heroTitle:
-      "Подборки популярных витаминов и добавок с понятными описаниями и удобной навигацией",
+    heroTitle: "Простой каталог витаминов и БАДов с понятными карточками и кнопкой покупки",
     heroText:
-      "Здесь собраны темы, по которым люди действительно ищут информацию: магний для сна, омега-3, витамин D3, пробиотики, коллаген, железо и другие популярные добавки. На каждой странице есть краткое объяснение, что сравнивать в составе, кому обычно подходит категория и какие форматы чаще выбирают для ежедневного приема.",
-    heroPrimary: "Открыть страницы",
-    heroSecondary: "Посмотреть категории",
-    topDirections: "Популярные темы",
-    topDirectionsValue: "Магний, омега-3, D3",
-    dailyDemand: "Часто выбирают",
-    dailyDemandValue: "Пробиотики, железо, цинк",
+      "На сайте собраны популярные темы: магний, омега-3, витамин D3, пробиотики, коллаген, железо, цинк и другие добавки. Сразу видно изображение, короткое описание и куда перейти для покупки.",
+    heroPrimary: "Открыть каталог",
+    heroSecondary: "Купить популярное",
+    heroPoints: [
+      "Фото товаров и категорий",
+      "Короткие и понятные описания",
+      "Быстрый переход к покупке"
+    ],
     pagesTitle: "Готовые подборки",
     pagesCountSuffix: "опубликованных тем",
     pageTagSuffix: "подборка",
-    openPage: "Открыть страницу",
-    categoriesTitle: "Основные категории",
-    categories: ["Минералы", "Витамины", "Жирные кислоты", "Пробиотики и коллаген"],
-    signupTitle: "Подборки по популярным витаминам и добавкам",
-    signupText:
-      "Здесь можно быстро перейти к темам, сравнить разные категории и выбрать страницы с более подробным описанием состава, формата и особенностей приема.",
-    signupPlaceholder: "Витамины, минералы и добавки",
-    signupButton: "Перейти к страницам"
+    openPage: "Подробнее",
+    buyNow: "Купить",
+    quickNote: "Только главное: фото, короткое описание и быстрая кнопка перехода."
   },
   ro: {
     title: "Selectii de vitamine si suplimente",
     description:
       "Pagini in romana despre vitamine, minerale si suplimente, cu descrieri clare, navigatie usoara si explicatii utile pentru alegere.",
-    promoPill: "Selectii populare",
-    promoText:
-      "Vitamine, minerale si suplimente explicate simplu, cu criterii de alegere si intrebari frecvente",
-    promoLink: "Vezi selectiile",
     eyebrow: "Vitamine si suplimente",
-    heroTitle:
-      "Selectii de vitamine si suplimente populare, cu explicatii clare si navigatie usoara",
+    heroTitle: "Catalog simplu de vitamine si suplimente, cu carduri clare si buton de cumparare",
     heroText:
-      "Aici sunt grupate teme pe care utilizatorii le cauta constant: magneziu pentru somn, omega-3, vitamina D3, probiotice, colagen, fier si alte suplimente populare. Fiecare pagina include explicatii simple, criterii de comparatie, intrebari frecvente si legaturi spre teme apropiate.",
-    heroPrimary: "Deschide paginile",
-    heroSecondary: "Vezi categoriile",
-    topDirections: "Teme populare",
-    topDirectionsValue: "Magneziu, omega-3, D3",
-    dailyDemand: "Alese frecvent",
-    dailyDemandValue: "Probiotice, fier, zinc",
+      "Sunt grupate teme populare precum magneziu, omega-3, vitamina D3, probiotice, colagen, fier, zinc si alte suplimente. Utilizatorul vede imediat imaginea, explicatia scurta si locul de unde poate cumpara.",
+    heroPrimary: "Deschide catalogul",
+    heroSecondary: "Cumpara rapid",
+    heroPoints: [
+      "Imagini relevante ale produselor",
+      "Texte scurte si usor de parcurs",
+      "Acces rapid spre cumparare"
+    ],
     pagesTitle: "Selectii publicate",
     pagesCountSuffix: "teme publicate",
     pageTagSuffix: "selectie",
-    openPage: "Deschide pagina",
-    categoriesTitle: "Categorii principale",
-    categories: ["Minerale", "Vitamine", "Acizi grasi", "Probiotice si colagen"],
-    signupTitle: "Selectii pentru vitamine si suplimente cautate frecvent",
-    signupText:
-      "Poti deschide rapid temele principale, compara categoriile si merge spre pagini cu explicatii mai detaliate despre compozitie, format si administrare.",
-    signupPlaceholder: "Vitamine, minerale si suplimente",
-    signupButton: "Mergi la pagini"
+    openPage: "Detalii",
+    buyNow: "Cumpara",
+    quickNote: "Doar esentialul: imagine, descriere scurta si buton rapid de acces."
   }
 } as const;
+
+function getBuyHref(sourceUrl: string, locale: Locale, slug: string) {
+  return sourceUrl.trim() || getLocalePath(locale, slug);
+}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -117,17 +104,14 @@ export default async function LocaleHomePage({ params }: { params: Promise<Param
   const locale: Locale = rawLocale;
   const pageCopy = copy[locale];
   const pages = getLocalizedSeoPages(locale);
+  const featuredPages = pages.slice(0, 3);
+  const featuredBuyHref = featuredPages[0]
+    ? getBuyHref(featuredPages[0].sourceUrl, locale, featuredPages[0].slug)
+    : "#seo-pages";
+  const featuredIsExternal = featuredPages[0]?.sourceUrl.trim().startsWith("http");
 
   return (
     <main className="site-root">
-      <div className="promo-strip">
-        <div className="shell promo-inner">
-          <div className="promo-pill">{pageCopy.promoPill}</div>
-          <p>{pageCopy.promoText}</p>
-          <Link href="#signup">{pageCopy.promoLink}</Link>
-        </div>
-      </div>
-
       <SiteHeader locale={locale} />
 
       <section className="home-hero">
@@ -141,23 +125,41 @@ export default async function LocaleHomePage({ params }: { params: Promise<Param
                 <a className="button button-primary" href="#seo-pages">
                   {pageCopy.heroPrimary}
                 </a>
-                <a className="button button-light" href="#categories">
+                <a
+                  className="button button-light"
+                  href={featuredBuyHref}
+                  {...(featuredIsExternal
+                    ? { target: "_blank", rel: "nofollow sponsored noopener noreferrer" }
+                    : {})}
+                >
                   {pageCopy.heroSecondary}
                 </a>
               </div>
+              <div className="hero-points">
+                {pageCopy.heroPoints.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
             </div>
 
-            <div className="home-hero-visual">
-              <div className="hero-orb orb-one" />
-              <div className="hero-orb orb-two" />
-              <div className="hero-product-card card-main">
-                <span>{pageCopy.topDirections}</span>
-                <strong>{pageCopy.topDirectionsValue}</strong>
-              </div>
-              <div className="hero-product-card card-side">
-                <span>{pageCopy.dailyDemand}</span>
-                <strong>{pageCopy.dailyDemandValue}</strong>
-              </div>
+            <div className="home-hero-showcase" aria-label="Popular supplement topics">
+              {featuredPages.map((page) => (
+                <article className="showcase-card" key={page.slug}>
+                  <div className="showcase-card-media">
+                    {page.imageUrl ? (
+                      <Image src={page.imageUrl} alt={page.h1} fill sizes="(max-width: 980px) 100vw, 200px" />
+                    ) : (
+                      <div className="image-fallback">
+                        <span>{page.keyword}</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="showcase-card-copy">
+                    <strong>{page.keyword}</strong>
+                    <span>{page.category}</span>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </div>
@@ -171,57 +173,46 @@ export default async function LocaleHomePage({ params }: { params: Promise<Param
               {pages.length} {pageCopy.pagesCountSuffix}
             </span>
           </div>
+          <p className="section-note">{pageCopy.quickNote}</p>
 
           <div className="seo-grid">
-            {pages.map((page) => (
-              <article key={page.slug} className="seo-card">
-                <p className="seo-card-tag">
-                  {page.category} · {pageCopy.pageTagSuffix}
-                </p>
-                <h3>{page.h1}</h3>
-                <p>{page.intro}</p>
-                <div className="seo-benefits">
-                  {page.benefits.slice(0, 3).map((benefit) => (
-                    <span key={benefit}>{benefit}</span>
-                  ))}
-                </div>
-                <Link href={getLocalePath(locale, page.slug)} className="button button-primary">
-                  {pageCopy.openPage}
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+            {pages.map((page) => {
+              const buyHref = getBuyHref(page.sourceUrl, locale, page.slug);
+              const isExternal = page.sourceUrl.trim().startsWith("http");
 
-      <section className="categories" id="categories">
-        <div className="shell">
-          <div className="section-head">
-            <h2>{pageCopy.categoriesTitle}</h2>
-          </div>
-
-          <div className="category-grid">
-            {pageCopy.categories.map((item, index) => (
-              <article className="category-item" key={item}>
-                <div className="category-icon">{String(index + 1).padStart(2, "0")}</div>
-                <h3>{item}</h3>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="signup" id="signup">
-        <div className="shell signup-box">
-          <div className="signup-copy">
-            <h2>{pageCopy.signupTitle}</h2>
-            <p>{pageCopy.signupText}</p>
-          </div>
-          <div className="signup-form">
-            <input placeholder={pageCopy.signupPlaceholder} readOnly />
-            <button className="button button-primary" type="button">
-              {pageCopy.signupButton}
-            </button>
+              return (
+                <article key={page.slug} className="seo-card">
+                  <div className="seo-card-media">
+                    {page.imageUrl ? (
+                      <Image src={page.imageUrl} alt={page.h1} fill sizes="(max-width: 980px) 100vw, 560px" />
+                    ) : (
+                      <div className="image-fallback">
+                        <span>{page.keyword}</span>
+                      </div>
+                    )}
+                  </div>
+                  <p className="seo-card-tag">
+                    {page.category} · {pageCopy.pageTagSuffix}
+                  </p>
+                  <h3>{page.h1}</h3>
+                  <p>{page.intro}</p>
+                  <div className="card-actions">
+                    <a
+                      href={buyHref}
+                      className="button button-primary"
+                      {...(isExternal
+                        ? { target: "_blank", rel: "nofollow sponsored noopener noreferrer" }
+                        : {})}
+                    >
+                      {pageCopy.buyNow}
+                    </a>
+                    <Link href={getLocalePath(locale, page.slug)} className="button button-secondary">
+                      {pageCopy.openPage}
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
