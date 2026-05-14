@@ -3,25 +3,34 @@ import { getLocalePath, type Locale } from "../lib/i18n";
 
 const labels = {
   ru: {
-    title: "Подборки витаминов, минералов, пробиотиков и других популярных добавок",
+    title: "Понятные подборки витаминов и добавок для повседневного выбора",
     copy:
-      "Страницы оформлены как полезные подборки с понятными объяснениями, краткими советами по выбору и удобными переходами между похожими темами.",
+      "На сайте собраны короткие подборки с простыми описаниями, чтобы человек мог быстро перейти к нужной теме и открыть подходящие товары на iHerb.",
     home: "Главная",
     pages: "Подборки",
-    categories: "Категории"
+    women: "Для женщин",
+    men: "Для мужчин",
+    adults: "18+",
+    back: "Для спины",
+    joints: "Для суставов"
   },
   ro: {
-    title: "Selectii de vitamine, minerale, probiotice si alte suplimente populare",
+    title: "Selectii clare de vitamine si suplimente pentru alegerea de zi cu zi",
     copy:
-      "Paginile sunt construite ca selectii utile, cu explicatii clare, sfaturi scurte pentru alegere si treceri usoare intre teme asemanatoare.",
+      "Site-ul aduna selectii scurte si usor de parcurs, pentru ca vizitatorul sa ajunga rapid la tema potrivita si la produsele relevante de pe iHerb.",
     home: "Acasa",
     pages: "Selectii",
-    categories: "Categorii"
+    women: "Pentru femei",
+    men: "Pentru barbati",
+    adults: "18+",
+    back: "Pentru spate",
+    joints: "Pentru articulatii"
   }
 } as const;
 
 export function SiteFooter({ locale }: { locale: Locale }) {
   const copy = labels[locale];
+  const base = getLocalePath(locale);
 
   return (
     <footer className="site-footer">
@@ -33,9 +42,13 @@ export function SiteFooter({ locale }: { locale: Locale }) {
         </div>
 
         <div className="footer-links">
-          <Link href={getLocalePath(locale)}>{copy.home}</Link>
-          <Link href={`${getLocalePath(locale)}#seo-pages`}>{copy.pages}</Link>
-          <Link href={`${getLocalePath(locale)}#categories`}>{copy.categories}</Link>
+          <Link href={base}>{copy.home}</Link>
+          <Link href={`${base}#seo-pages`}>{copy.pages}</Link>
+          <a href={`${base}#for-women`}>{copy.women}</a>
+          <a href={`${base}#for-men`}>{copy.men}</a>
+          <a href={`${base}#for-adults`}>{copy.adults}</a>
+          <a href={`${base}#for-back`}>{copy.back}</a>
+          <a href={`${base}#for-joints`}>{copy.joints}</a>
         </div>
       </div>
     </footer>

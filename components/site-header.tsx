@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { getAlternateLocale, getLanguageName, getLanguageShortLabel, getLocalePath, type Locale } from "../lib/i18n";
+import {
+  getAlternateLocale,
+  getLanguageName,
+  getLanguageShortLabel,
+  getLocalePath,
+  type Locale
+} from "../lib/i18n";
 
 type SiteHeaderProps = {
   compact?: boolean;
@@ -9,30 +15,28 @@ type SiteHeaderProps = {
 
 const labels = {
   ru: {
-    navAria: "Главная навигация",
+    navAria: "Основная навигация",
     home: "Главная",
     pages: "Подборки",
-    categories: "Категории",
-    searchPlaceholder: "Поиск по витаминам, минералам и БАДам",
-    popular: "Популярные страницы",
-    vitamins: "Витамины",
-    minerals: "Минералы",
-    fats: "Омега и жирные кислоты",
-    probiotics: "Пробиотики"
+    women: "Для женщин",
+    men: "Для мужчин",
+    adults: "18+",
+    back: "Для спины",
+    joints: "Для суставов"
   },
   ro: {
     navAria: "Navigatie principala",
     home: "Acasa",
     pages: "Selectii",
-    categories: "Categorii",
-    searchPlaceholder: "Cauta vitamine, minerale si suplimente",
-    popular: "Pagini populare",
-    vitamins: "Vitamine",
-    minerals: "Minerale",
-    fats: "Omega si acizi grasi",
-    probiotics: "Probiotice"
+    women: "Pentru femei",
+    men: "Pentru barbati",
+    adults: "18+",
+    back: "Pentru spate",
+    joints: "Pentru articulatii"
   }
 } as const;
+
+const sectionAnchors = ["for-women", "for-men", "for-adults", "for-back", "for-joints"] as const;
 
 function LanguageSwitcher({ locale, slug }: { locale: Locale; slug?: string }) {
   const alternateLocale = getAlternateLocale(locale);
@@ -51,20 +55,35 @@ function LanguageSwitcher({ locale, slug }: { locale: Locale; slug?: string }) {
   );
 }
 
+function MenuLinks({ locale }: { locale: Locale }) {
+  const copy = labels[locale];
+  const base = getLocalePath(locale);
+
+  return (
+    <>
+      <Link href={`${base}#seo-pages`}>{copy.pages}</Link>
+      <a href={`${base}#${sectionAnchors[0]}`}>{copy.women}</a>
+      <a href={`${base}#${sectionAnchors[1]}`}>{copy.men}</a>
+      <a href={`${base}#${sectionAnchors[2]}`}>{copy.adults}</a>
+      <a href={`${base}#${sectionAnchors[3]}`}>{copy.back}</a>
+      <a href={`${base}#${sectionAnchors[4]}`}>{copy.joints}</a>
+    </>
+  );
+}
+
 export function SiteHeader({ compact = false, locale, slug }: SiteHeaderProps) {
   const copy = labels[locale];
 
   if (compact) {
     return (
       <header className="page-header">
-        <div className="wrap topbar">
+        <div className="wrap topbar compact-topbar">
           <Link className="brand" href={getLocalePath(locale)}>
             iherbs.com.md
           </Link>
           <nav className="topnav" aria-label={copy.navAria}>
             <Link href={getLocalePath(locale)}>{copy.home}</Link>
-            <Link href={`${getLocalePath(locale)}#seo-pages`}>{copy.pages}</Link>
-            <Link href={`${getLocalePath(locale)}#categories`}>{copy.categories}</Link>
+            <MenuLinks locale={locale} />
           </nav>
           <LanguageSwitcher locale={locale} slug={slug} />
         </div>
@@ -86,26 +105,12 @@ export function SiteHeader({ compact = false, locale, slug }: SiteHeaderProps) {
             <span className="logo-text">iherbs.com.md</span>
           </Link>
 
-          <div className="searchbar">
-            <input aria-label={copy.searchPlaceholder} placeholder={copy.searchPlaceholder} readOnly />
-            <span className="search-icon">⌕</span>
-          </div>
+          <nav className="header-actions" aria-label={copy.navAria}>
+            <Link href={getLocalePath(locale)}>{copy.home}</Link>
+            <MenuLinks locale={locale} />
+          </nav>
 
-          <div className="header-actions">
-            <Link href={`${getLocalePath(locale)}#seo-pages`}>{copy.pages}</Link>
-            <Link href={`${getLocalePath(locale)}#categories`}>{copy.categories}</Link>
-            <LanguageSwitcher locale={locale} slug={slug} />
-          </div>
-        </div>
-      </div>
-
-      <div className="header-nav-wrap">
-        <div className="shell header-nav">
-          <a href={`${getLocalePath(locale)}#seo-pages`}>{copy.popular}</a>
-          <a href={`${getLocalePath(locale)}#categories`}>{copy.vitamins}</a>
-          <a href={`${getLocalePath(locale)}#categories`}>{copy.minerals}</a>
-          <a href={`${getLocalePath(locale)}#categories`}>{copy.fats}</a>
-          <a href={`${getLocalePath(locale)}#categories`}>{copy.probiotics}</a>
+          <LanguageSwitcher locale={locale} slug={slug} />
         </div>
       </div>
     </header>

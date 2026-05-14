@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ProductShelf } from "../../components/product-shelf";
 import { SiteFooter } from "../../components/site-footer";
 import { SiteHeader } from "../../components/site-header";
+import { getCuratedCards, homeSections } from "../../lib/curated-products";
 import { defaultLocale, getLocalePath, isLocale, locales, type Locale } from "../../lib/i18n";
 import { getLocalizedSeoPages } from "../../lib/localized-seo";
 import { siteConfig } from "../../lib/site";
@@ -14,46 +16,40 @@ const copy = {
   ru: {
     title: "Подборки витаминов и добавок",
     description:
-      "Русскоязычные подборки витаминов, минералов и добавок с понятными описаниями, удобной навигацией и отдельными страницами по популярным темам.",
+      "Понятный каталог витаминов, минералов и добавок с короткими описаниями, карточками товаров и быстрым переходом на iHerb.",
     eyebrow: "Витамины и добавки",
-    heroTitle: "Простой каталог витаминов и БАДов с понятными карточками и кнопкой покупки",
+    heroTitle: "Простой сайт о витаминах и БАДах, где легко выбрать нужную тему",
     heroText:
-      "На сайте собраны популярные темы: магний, омега-3, витамин D3, пробиотики, коллаген, железо, цинк и другие добавки. Сразу видно изображение, короткое описание и куда перейти для покупки.",
-    heroPrimary: "Открыть каталог",
-    heroSecondary: "Купить популярное",
-    heroPoints: [
-      "Фото товаров и категорий",
-      "Короткие и понятные описания",
-      "Быстрый переход к покупке"
-    ],
-    pagesTitle: "Готовые подборки",
-    pagesCountSuffix: "опубликованных тем",
+      "На сайте собраны популярные подборки: магний, омега-3, витамин D3, пробиотики, коллаген, железо, цинк и другие темы. На каждой странице есть краткое объяснение и быстрый переход к товарам на iHerb.",
+    heroPrimary: "Смотреть подборки",
+    heroSecondary: "Перейти к популярному",
+    heroPoints: ["Короткие объяснения", "Фото товаров", "Быстрые кнопки покупки"],
+    curatedTitle: "Популярные темы",
+    curatedCountSuffix: "подборок",
+    sectionPages: "Подходящие подборки",
+    allPagesTitle: "Все подборки",
     pageTagSuffix: "подборка",
     openPage: "Подробнее",
-    buyNow: "Купить",
-    quickNote: "Только главное: фото, короткое описание и быстрая кнопка перехода."
+    buyNow: "Купить"
   },
   ro: {
     title: "Selectii de vitamine si suplimente",
     description:
-      "Pagini in romana despre vitamine, minerale si suplimente, cu descrieri clare, navigatie usoara si explicatii utile pentru alegere.",
+      "Catalog clar de vitamine, minerale si suplimente, cu explicatii scurte, carduri de produse si acces rapid spre iHerb.",
     eyebrow: "Vitamine si suplimente",
-    heroTitle: "Catalog simplu de vitamine si suplimente, cu carduri clare si buton de cumparare",
+    heroTitle: "Un site simplu despre vitamine si suplimente, unde tema potrivita se gaseste usor",
     heroText:
-      "Sunt grupate teme populare precum magneziu, omega-3, vitamina D3, probiotice, colagen, fier, zinc si alte suplimente. Utilizatorul vede imediat imaginea, explicatia scurta si locul de unde poate cumpara.",
-    heroPrimary: "Deschide catalogul",
-    heroSecondary: "Cumpara rapid",
-    heroPoints: [
-      "Imagini relevante ale produselor",
-      "Texte scurte si usor de parcurs",
-      "Acces rapid spre cumparare"
-    ],
-    pagesTitle: "Selectii publicate",
-    pagesCountSuffix: "teme publicate",
+      "Aici sunt adunate selectii populare precum magneziu, omega-3, vitamina D3, probiotice, colagen, fier, zinc si alte teme. Fiecare pagina are o explicatie scurta si trecere rapida spre produse de pe iHerb.",
+    heroPrimary: "Vezi selectiile",
+    heroSecondary: "Mergi la cele populare",
+    heroPoints: ["Explicatii scurte", "Imagini de produs", "Butoane rapide de cumparare"],
+    curatedTitle: "Teme populare",
+    curatedCountSuffix: "selectii",
+    sectionPages: "Selectii potrivite",
+    allPagesTitle: "Toate selectiile",
     pageTagSuffix: "selectie",
     openPage: "Detalii",
-    buyNow: "Cumpara",
-    quickNote: "Doar esentialul: imagine, descriere scurta si buton rapid de acces."
+    buyNow: "Cumpara"
   }
 } as const;
 
@@ -147,7 +143,7 @@ export default async function LocaleHomePage({ params }: { params: Promise<Param
                 <article className="showcase-card" key={page.slug}>
                   <div className="showcase-card-media">
                     {page.imageUrl ? (
-                      <Image src={page.imageUrl} alt={page.h1} fill sizes="(max-width: 980px) 100vw, 200px" />
+                      <Image src={page.imageUrl} alt={page.h1} fill sizes="(max-width: 980px) 100vw, 220px" />
                     ) : (
                       <div className="image-fallback">
                         <span>{page.keyword}</span>
@@ -165,15 +161,45 @@ export default async function LocaleHomePage({ params }: { params: Promise<Param
         </div>
       </section>
 
+      {homeSections.map((section) => {
+        const sectionPages = section.pageSlugs
+          .map((slug) => pages.find((page) => page.slug === slug))
+          .filter((page): page is NonNullable<(typeof pages)[number]> => Boolean(page));
+        const cards = getCuratedCards(section.cardIds);
+
+        return (
+          <section className="audience-section" id={section.id} key={section.id}>
+            <div className="shell audience-shell">
+              <div className="section-head">
+                <div>
+                  <h2>{section.title[locale]}</h2>
+                  <p className="section-note">{section.description[locale]}</p>
+                </div>
+              </div>
+
+              <div className="audience-links">
+                {sectionPages.map((page) => (
+                  <Link href={getLocalePath(locale, page.slug)} key={page.slug} className="audience-link-card">
+                    <strong>{page.h1}</strong>
+                    <span>{pageCopy.openPage}</span>
+                  </Link>
+                ))}
+              </div>
+
+              <ProductShelf cards={cards} locale={locale} />
+            </div>
+          </section>
+        );
+      })}
+
       <section className="seo-section" id="seo-pages">
         <div className="shell">
           <div className="section-head">
-            <h2>{pageCopy.pagesTitle}</h2>
+            <h2>{pageCopy.allPagesTitle}</h2>
             <span>
-              {pages.length} {pageCopy.pagesCountSuffix}
+              {pages.length} {pageCopy.curatedCountSuffix}
             </span>
           </div>
-          <p className="section-note">{pageCopy.quickNote}</p>
 
           <div className="seo-grid">
             {pages.map((page) => {

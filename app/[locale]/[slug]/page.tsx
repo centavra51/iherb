@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ProductShelf } from "../../../components/product-shelf";
 import { SeoHero } from "../../../components/seo-hero";
 import { SiteFooter } from "../../../components/site-footer";
 import { SiteHeader } from "../../../components/site-header";
+import { getCardsForPage } from "../../../lib/curated-products";
 import { getLocalePath, isLocale, locales, type Locale } from "../../../lib/i18n";
-import { getLocalizedRelatedPages, getLocalizedSeoPageBySlug, getLocalizedSeoPages } from "../../../lib/localized-seo";
+import {
+  getLocalizedRelatedPages,
+  getLocalizedSeoPageBySlug,
+  getLocalizedSeoPages
+} from "../../../lib/localized-seo";
 import { siteConfig } from "../../../lib/site";
 
 type Params = { locale: string; slug: string };
@@ -18,18 +24,19 @@ const copy = {
     seeTips: "Что проверить перед покупкой",
     buyTitle: "Быстрый переход к покупке",
     buyText:
-      "Если вариант уже понятен, можно сразу перейти к покупке. Если нет, ниже есть короткие критерии выбора и ответы на частые вопросы.",
+      "Если тема уже понятна, можно сразу открыть товары на iHerb. Ниже есть короткие подсказки по выбору и несколько подходящих вариантов.",
+    productsTitle: "Что можно посмотреть на iHerb",
     compareTitle: "Что проверить перед покупкой",
     compareLead: "Чтобы не запутаться, обычно достаточно сравнить несколько базовых пунктов:",
     fitTitle: "Кому может подойти",
     fitText:
       "Эта подборка подходит тем, кто хочет быстро понять различия между популярными вариантами и выбрать удобный формат без лишней информации.",
-    chooseTitle: "Как выбрать понятнее",
+    chooseTitle: "Как выбрать проще",
     faq: "Частые вопросы",
     usefulTitle: "Полезно знать",
     relatedTitle: "Похожие подборки",
     compareMore: "Посмотреть похожие варианты",
-    fallbackBuy: "Открыть подборки"
+    fallbackBuy: "Открыть все подборки"
   },
   ro: {
     home: "Acasa",
@@ -38,7 +45,8 @@ const copy = {
     seeTips: "Ce sa verifici inainte de comanda",
     buyTitle: "Trecere rapida spre cumparare",
     buyText:
-      "Daca alegerea este deja clara, poti merge direct spre cumparare. Daca nu, mai jos gasesti criterii scurte de alegere si raspunsuri la intrebarile frecvente.",
+      "Daca tema este deja clara, poti deschide imediat produsele de pe iHerb. Mai jos sunt cateva repere scurte si variante relevante.",
+    productsTitle: "Ce poti vedea pe iHerb",
     compareTitle: "Ce sa verifici inainte de comanda",
     compareLead: "Ca sa nu te incurci, de obicei este suficient sa compari cateva lucruri de baza:",
     fitTitle: "Pentru cine poate fi potrivita",
@@ -49,7 +57,7 @@ const copy = {
     usefulTitle: "Util de stiut",
     relatedTitle: "Selectii similare",
     compareMore: "Vezi variante similare",
-    fallbackBuy: "Deschide selectiile"
+    fallbackBuy: "Deschide toate selectiile"
   }
 } as const;
 
@@ -136,6 +144,7 @@ export default async function SeoPage({ params }: { params: Promise<Params> }) {
   const schema = buildSchema(page, locale);
   const buyHref = getBuyHref(page, locale);
   const isExternalBuy = buyHref.startsWith("http://") || buyHref.startsWith("https://");
+  const curatedCards = getCardsForPage(page.slug, page.sourceUrl, page.imageUrl);
 
   return (
     <main className="programmatic-root">
@@ -177,6 +186,11 @@ export default async function SeoPage({ params }: { params: Promise<Params> }) {
                 {pageCopy.seeTips}
               </a>
             </div>
+          </section>
+
+          <section className="card compact-card">
+            <h2>{pageCopy.productsTitle}</h2>
+            <ProductShelf cards={curatedCards} locale={locale} />
           </section>
 
           <section className="simple-grid" id="compare">

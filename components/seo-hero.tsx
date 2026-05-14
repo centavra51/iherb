@@ -5,27 +5,21 @@ import type { LocalizedSeoPage } from "../lib/localized-seo";
 const labels = {
   ru: {
     forms: "Форма",
-    formsText: "Капсулы, порошок, жевательные или жидкие варианты.",
-    composition: "Состав",
-    compositionText: "Сравните дозировку на порцию и основные компоненты.",
-    choice: "Удобство",
-    choiceText: "Оцените размер порции и простоту ежедневного приема.",
-    badge: "Подборка по теме:",
-    shortGuide: "Главное перед покупкой",
-    compareThree: "Сравните 3 вещи",
-    compareThreeText: "Форму, дозировку и состав без лишних обещаний."
+    formsText: "Капсулы, порошок, жидкий или жевательный формат.",
+    dosage: "Дозировка",
+    dosageText: "Сравните количество на порцию и размер упаковки.",
+    comfort: "Удобство",
+    comfortText: "Посмотрите, насколько просто принимать продукт каждый день.",
+    selection: "подборка"
   },
   ro: {
     forms: "Forma",
-    formsText: "Capsule, pulbere, forme masticabile sau variante lichide.",
-    composition: "Compozitie",
-    compositionText: "Compara doza per portie si ingredientele principale.",
-    choice: "Confort",
-    choiceText: "Verifica marimea portiei si usurinta administrarii zilnice.",
-    badge: "Selectie pe tema:",
-    shortGuide: "Esential inainte de comanda",
-    compareThree: "Compara 3 lucruri",
-    compareThreeText: "Forma, doza si compozitia fara promisiuni inutile."
+    formsText: "Capsule, pudra, lichid sau format masticabil.",
+    dosage: "Doza",
+    dosageText: "Compara cantitatea per portie si marimea ambalajului.",
+    comfort: "Confort",
+    comfortText: "Vezi cat de simplu este produsul pentru administrare zilnica.",
+    selection: "selectie"
   }
 } as const;
 
@@ -33,25 +27,26 @@ export function SeoHero({ page, locale }: { page: LocalizedSeoPage; locale: Loca
   const copy = labels[locale];
 
   return (
-    <section className="hero">
+    <section className="hero simple-hero">
       <div className="hero-copy">
         <p className="eyebrow">
-          {page.category} · {locale === "ru" ? "подборка" : "selectie"}
+          {page.category} · {copy.selection}
         </p>
         <h1>{page.h1}</h1>
         <p className="lead">{page.intro}</p>
+
         <div className="hero-metrics">
           <div className="metric">
             <strong>{copy.forms}</strong>
             <span>{copy.formsText}</span>
           </div>
           <div className="metric">
-            <strong>{copy.composition}</strong>
-            <span>{copy.compositionText}</span>
+            <strong>{copy.dosage}</strong>
+            <span>{copy.dosageText}</span>
           </div>
           <div className="metric">
-            <strong>{copy.choice}</strong>
-            <span>{copy.choiceText}</span>
+            <strong>{copy.comfort}</strong>
+            <span>{copy.comfortText}</span>
           </div>
         </div>
       </div>
@@ -65,14 +60,6 @@ export function SeoHero({ page, locale }: { page: LocalizedSeoPage; locale: Loca
               <span>{page.keyword}</span>
             </div>
           )}
-        </div>
-        <div className="image-badge">
-          {copy.badge} {page.keyword}
-        </div>
-        <div className="hero-floating-card">
-          <p>{copy.shortGuide}</p>
-          <strong>{copy.compareThree}</strong>
-          <span>{copy.compareThreeText}</span>
         </div>
       </div>
     </section>
